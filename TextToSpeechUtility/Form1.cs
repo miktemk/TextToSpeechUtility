@@ -19,33 +19,19 @@ namespace SpeechTest
 	{
 		private bool appRunning;
 		private Thread checker;
-		private readonly SpVoice vox;
+		private SpVoice vox;
         private int languageIndex = 0;
         private string[] voiceNames;
 
 		public Form1()
 		{
 			InitializeComponent();
-
-            vox = new SpVoice();
             InitializeComponentMy();
-
-            LastFolder = Path.GetDirectoryName(Application.ExecutablePath);
-            
-            ddlRate.SelectedItem = "2";
-			checker = new Thread(CheckPlayState);
-			checker.Start();
-			appRunning = true;
-            textArea.GotFocus += textBox1_GotFocus;
-
-            SpeechSynthesizer synth = new SpeechSynthesizer();
-            var voices = synth.GetInstalledVoices();
-            var shit = voices.Select(x => x.VoiceInfo.Description).ToArray();
-            //synth.SpeakAsync(new Prompt("hello you bitches I am the best"));
 		}
 
         private void InitializeComponentMy()
         {
+			vox = new SpVoice();
             var voices = vox.GetVoices();
             voiceNames = new string[voices.Count];
             for (int i = 0; i < voices.Count; i++)
@@ -61,6 +47,25 @@ namespace SpeechTest
 
 		#region event handlers
 
+		private void Form1_Load(object sender, EventArgs e) {
+			LastFolder = Path.GetDirectoryName(Application.ExecutablePath);
+
+			ddlRate.SelectedItem = "2";
+			checker = new Thread(CheckPlayState);
+			checker.Start();
+			appRunning = true;
+			textArea.GotFocus += textBox1_GotFocus;
+
+			SpeechSynthesizer synth = new SpeechSynthesizer();
+			var voices = synth.GetInstalledVoices();
+			var shit = voices.Select(x => x.VoiceInfo.Description).ToArray();
+			//synth.SpeakAsync(new Prompt("hello you bitches I am the best"));
+
+			// make textbox non editable
+			// see: http://stackoverflow.com/questions/85702/how-can-i-make-a-combobox-non-editable-in-net
+			ddlLang.DropDownStyle = ComboBoxStyle.DropDownList;
+		}
+		
         // start button
         private void button1_Click(object sender, EventArgs e)
 		{
@@ -83,7 +88,7 @@ namespace SpeechTest
 			}
 		}
 
-        // stop button
+		// stop button
 		private void button2_Click(object sender, EventArgs e)
 		{
 			stopTalking();
@@ -108,6 +113,15 @@ namespace SpeechTest
             LastFolder = Path.GetDirectoryName(fff.FileName);
             SayItToFile(fff.FileName);
         }
+
+		// shortcut for stard button
+		private void textArea_KeyDown(object sender, KeyEventArgs e) {
+			if (e.Control && e.KeyCode == Keys.B) {
+				e.Handled = true;
+				e.SuppressKeyPress = true;
+				button1_Click(textArea, null);
+			}
+		}
 
         // rate DDL
         private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
@@ -144,6 +158,10 @@ namespace SpeechTest
 		private void textBox1_GotFocus(object sender, EventArgs e)
 		{
 			textArea.SelectAll();
+		}
+
+		private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
+			Process.Start(LastFolder);
 		}
 
 		private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -216,8 +234,9 @@ namespace SpeechTest
 
 		#endregion
 
+		#region global vars.... I mean, just vars, lol, not global
 
-        public string TextToSay {
+		public string TextToSay {
             get {
                 var text = textArea.Text;
                 if (String.IsNullOrWhiteSpace(text))
@@ -225,14 +244,13 @@ namespace SpeechTest
                 return text;
             }
         }
-
         public string LastFolder { get; private set; }
-
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
-            Process.Start(LastFolder);
-        }
-
 		public string SaveToFileFilename { get; set; }
+
+		#endregion
+
+		#region background worker (saving in file)
+
 		private void bgwrkSaveToFile_DoWork(object sender, DoWorkEventArgs e) {
 			var texts = TextToSay.SplitIntoPages();
 			var index = 0;
@@ -240,6 +258,7 @@ namespace SpeechTest
 				vox.Voice = vox.GetVoices().Item(languageIndex);
 				//vox.Speak("", SpeechVoiceSpeakFlags.SVSFPurgeBeforeSpeak);
 				try {
+					bgwrkSaveToFile.ReportProgress(100 * index / texts.Length);
 					index++;
 					var options = SpeechVoiceSpeakFlags.SVSFlagsAsync;
 					var stream = new SpFileStream();
@@ -250,7 +269,6 @@ namespace SpeechTest
 					vox.WaitUntilDone(100000);
 					stream.Close();
 					vox.AudioOutputStream = null;
-					bgwrkSaveToFile.ReportProgress(100 * index / texts.Length);
 				}
 				catch (Exception ex) { }
 			}
@@ -260,8 +278,14 @@ namespace SpeechTest
 			// Change the value of the ProgressBar to the BackgroundWorker progress.
 			progressBar1.Value = e.ProgressPercentage;
 			// Set the text.
-			this.Text = e.ProgressPercentage.ToString();
+			this.Text = "Saving to wav... " + e.ProgressPercentage.ToString() + "%";
 		}
 
+		private void bgwrkSaveToFile_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) {
+			this.Text = "Done saving.";
+			progressBar1.Value = 100;
+		}
+
+		#endregion
 	}
 }

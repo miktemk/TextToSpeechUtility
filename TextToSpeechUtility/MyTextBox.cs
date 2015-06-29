@@ -13,5 +13,9 @@
 			else
 				base.OnKeyDown(e);
 		}
+
+		//protected override bool ProcessCmdKey(ref System.Windows.Forms.Message msg, System.Windows.Forms.Keys keyData) {
+		//	return base.ProcessCmdKey(ref msg, keyData);
+		//}
 	}
 }
