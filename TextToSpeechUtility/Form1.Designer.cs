@@ -41,7 +41,7 @@
 			this.linkLabel1 = new System.Windows.Forms.LinkLabel();
 			this.progressBar1 = new System.Windows.Forms.ProgressBar();
 			this.bgwrkSaveToFile = new System.ComponentModel.BackgroundWorker();
-			this.textArea = new SpeechTest.MyTextBox();
+			this.textArea = new System.Windows.Forms.RichTextBox();
 			this.SuspendLayout();
 			// 
 			// buttonPlay
@@ -171,7 +171,6 @@
 			this.textArea.MaxLength = 2147483647;
 			this.textArea.Multiline = true;
 			this.textArea.Name = "textArea";
-			this.textArea.ScrollBars = System.Windows.Forms.ScrollBars.Both;
 			this.textArea.Size = new System.Drawing.Size(535, 469);
 			this.textArea.TabIndex = 1;
 			this.textArea.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textArea_KeyDown);
@@ -208,7 +207,7 @@
 		#endregion
 
 		private System.Windows.Forms.Button buttonPlay;
-		private MyTextBox textArea;
+		private System.Windows.Forms.RichTextBox textArea;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.ComboBox ddlRate;
         private System.Windows.Forms.Button buttonStop;

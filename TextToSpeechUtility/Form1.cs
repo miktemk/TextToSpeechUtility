@@ -121,6 +121,14 @@ namespace SpeechTest
 				e.SuppressKeyPress = true;
 				button1_Click(textArea, null);
 			}
+			else if (e.Control && e.KeyCode == Keys.A)
+			{
+				textArea.SelectAll();
+				e.SuppressKeyPress = true;
+				e.Handled = true;
+			}
+			else
+				base.OnKeyDown(e);
 		}
 
         // rate DDL
