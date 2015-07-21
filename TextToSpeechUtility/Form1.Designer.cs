@@ -36,12 +36,12 @@
 			this.buttonWiki = new System.Windows.Forms.Button();
 			this.chkIsXml = new System.Windows.Forms.CheckBox();
 			this.label2 = new System.Windows.Forms.Label();
+			this.ddlLang = new System.Windows.Forms.ComboBox();
 			this.btnSave = new System.Windows.Forms.Button();
 			this.linkLabel1 = new System.Windows.Forms.LinkLabel();
 			this.progressBar1 = new System.Windows.Forms.ProgressBar();
 			this.bgwrkSaveToFile = new System.ComponentModel.BackgroundWorker();
 			this.textArea = new System.Windows.Forms.RichTextBox();
-			this.ddlLang = new System.Windows.Forms.ComboBox();
 			this.SuspendLayout();
 			// 
 			// buttonPlay
@@ -128,6 +128,19 @@
 			this.label2.TabIndex = 3;
 			this.label2.Text = "Lang:";
 			// 
+			// ddlLang
+			// 
+			this.ddlLang.DropDownHeight = 200;
+			this.ddlLang.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.ddlLang.FormattingEnabled = true;
+			this.ddlLang.IntegralHeight = false;
+			this.ddlLang.Location = new System.Drawing.Point(168, 1029);
+			this.ddlLang.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+			this.ddlLang.Name = "ddlLang";
+			this.ddlLang.Size = new System.Drawing.Size(932, 54);
+			this.ddlLang.TabIndex = 4;
+			this.ddlLang.SelectedIndexChanged += new System.EventHandler(this.ddlLang_SelectedIndexChanged);
+			// 
 			// btnSave
 			// 
 			this.btnSave.Location = new System.Drawing.Point(214, 1223);
@@ -176,24 +189,11 @@
 			this.textArea.Text = "";
 			this.textArea.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textArea_KeyDown);
 			// 
-			// ddlLang
-			// 
-			this.ddlLang.DropDownHeight = 400;
-			this.ddlLang.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.ddlLang.FormattingEnabled = true;
-			this.ddlLang.IntegralHeight = false;
-			this.ddlLang.ItemHeight = 46;
-			this.ddlLang.Location = new System.Drawing.Point(168, 1029);
-			this.ddlLang.Margin = new System.Windows.Forms.Padding(6);
-			this.ddlLang.Name = "ddlLang";
-			this.ddlLang.Size = new System.Drawing.Size(932, 54);
-			this.ddlLang.TabIndex = 4;
-			this.ddlLang.SelectedIndexChanged += new System.EventHandler(this.ddlLang_SelectedIndexChanged);
-			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.AutoSize = true;
 			this.ClientSize = new System.Drawing.Size(1154, 1333);
 			this.Controls.Add(this.progressBar1);
 			this.Controls.Add(this.linkLabel1);
@@ -229,12 +229,12 @@
         private System.Windows.Forms.Button buttonStop;
         private System.Windows.Forms.Button buttonWiki;
         private System.Windows.Forms.CheckBox chkIsXml;
-		private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox ddlLang;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.LinkLabel linkLabel1;
 		private System.Windows.Forms.ProgressBar progressBar1;
 		private System.ComponentModel.BackgroundWorker bgwrkSaveToFile;
-		private System.Windows.Forms.ComboBox ddlLang;
 	}
 }
 
