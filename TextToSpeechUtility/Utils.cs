@@ -47,5 +47,46 @@ namespace SpeechTest
 
 			return list.ToArray();
 		}
+
+        /// <summary>
+        /// ... From Miktemk
+        /// </summary>
+        public static int IndexOf<T>(this IEnumerable<T> list, T obj, Func<T, T, bool> comparator)
+        {
+            var index = 0;
+            foreach (var x in list)
+            {
+                if (comparator(x, obj))
+                    return index;
+                index++;
+            }
+            return -1;
+        }
+
+        internal static QLanguage WhatLanguage(string s)
+        {
+            const int MaxChar = 30;
+            var nEng = 0;
+            var nRus = 0;
+            for (var i = 0; i < s.Length; i++)
+            {
+                if ((s[i] >= 65 && s[i] <= 90) ||
+                    (s[i] >= 97 && s[i] <= 122))
+                {
+                    nEng++;
+                    if (nEng > MaxChar)
+                        return QLanguage.Engrish;
+                }
+                if (s[i] >= 0x400 && s[i] <= 0x4FF)
+                {
+                    nRus++;
+                    if (nRus > MaxChar)
+                        return QLanguage.Russian;
+                }
+                
+            }
+            return QLanguage.WTF;
+        }
+
     }
 }

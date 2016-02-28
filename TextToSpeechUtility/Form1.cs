@@ -45,16 +45,16 @@ namespace SpeechTest
                 ddlLang.SelectedIndex = 0;
         }
 
-		#region event handlers
+        #region ------------------------ event handlers ------------------------
 
-		private void Form1_Load(object sender, EventArgs e) {
+        private void Form1_Load(object sender, EventArgs e) {
 			LastFolder = Path.GetDirectoryName(Application.ExecutablePath);
 
 			ddlRate.SelectedItem = "2";
 			checker = new Thread(CheckPlayState);
 			checker.Start();
 			appRunning = true;
-			textArea.GotFocus += textBox1_GotFocus;
+			textArea.GotFocus += textArea_GotFocus;
 
 			SpeechSynthesizer synth = new SpeechSynthesizer();
 			var voices = synth.GetInstalledVoices();
@@ -67,7 +67,7 @@ namespace SpeechTest
 		}
 		
         // start button
-        private void button1_Click(object sender, EventArgs e)
+        private void btnStart_Click(object sender, EventArgs e)
 		{
 			switch (vox.Status.RunningState)
 			{
@@ -89,14 +89,14 @@ namespace SpeechTest
 		}
 
 		// stop button
-		private void button2_Click(object sender, EventArgs e)
+		private void btnStop_Click(object sender, EventArgs e)
 		{
 			stopTalking();
 			buttonPlay.Text = Resources.Form1_button1_Text_Play;
 		}
 
         // wiki clean button
-        private void button3_Click(object sender, EventArgs e)
+        private void btnWikiClean_Click(object sender, EventArgs e)
         {
             textArea.Text = textArea.Text.WikiStringStrip();
         }
@@ -115,12 +115,19 @@ namespace SpeechTest
         }
 
 		// shortcut for stard button
-		private void textArea_KeyDown(object sender, KeyEventArgs e) {
+		private void textArea_KeyDown(object sender, KeyEventArgs e)
+        {
 			if (e.Control && e.KeyCode == Keys.B) {
 				e.Handled = true;
 				e.SuppressKeyPress = true;
-				button1_Click(textArea, null);
+				btnStart_Click(textArea, null);
 			}
+            else if (e.Control && e.KeyCode == Keys.W)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+                btnWikiClean_Click(textArea, null);
+            }
 			else if (e.Control && e.KeyCode == Keys.A)
 			{
 				textArea.SelectAll();
@@ -132,7 +139,7 @@ namespace SpeechTest
 		}
 
         // rate DDL
-        private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
+        private void ddlRate_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             var val = ddlRate.SelectedItem;
             var rate = 2;
@@ -147,11 +154,11 @@ namespace SpeechTest
             languageIndex = ddlLang.SelectedIndex;
             if (voiceNames != null)
             {
-                if (voiceNames[languageIndex].Contains("Microsoft David Desktop") ||
-                    voiceNames[languageIndex].Contains("Microsoft Hazel Desktop") ||
-                    voiceNames[languageIndex].Contains("Microsoft Zira Desktop"))
+                if (IsCurrentLanguageThisOne("Microsoft David Desktop") ||
+                    IsCurrentLanguageThisOne("Microsoft Hazel Desktop") ||
+                    IsCurrentLanguageThisOne("Microsoft Zira Desktop"))
                     ddlRate.SelectedItem = "2";
-                if (voiceNames[languageIndex].Contains("Microsoft Irina Desktop"))
+                if (IsCurrentLanguageThisOne("Microsoft Irina Desktop"))
                     ddlRate.SelectedItem = "3";
             }
         }
@@ -163,7 +170,18 @@ namespace SpeechTest
             textArea.SelectAll();
         }
 
-		private void textBox1_GotFocus(object sender, EventArgs e)
+        private void textArea_TextChanged(object sender, EventArgs e)
+        {
+            var langy = Utils.WhatLanguage(textArea.Text);
+            if (langy == QLanguage.WTF)
+                return;
+            if (langy == QLanguage.Russian)
+                SelectLang("Microsoft Irina Desktop");
+            else if (langy != QLanguage.Russian && IsCurrentLanguageThisOne("Microsoft Irina Desktop"))
+                SelectLang("Microsoft David Desktop");
+        }
+
+		private void textArea_GotFocus(object sender, EventArgs e)
 		{
 			textArea.SelectAll();
 		}
@@ -185,7 +203,7 @@ namespace SpeechTest
 
 		#endregion
 
-		#region private functions
+		#region ------------------------ private functions -----------------------------------
 
 		//public void SayIt(string text){}
 		private void SayIt()
@@ -240,11 +258,21 @@ namespace SpeechTest
 			}
 		}
 
+        private void SelectLang(string lang)
+        {
+            ddlLang.SelectedIndex = voiceNames.IndexOf(lang, (x, obj) => x.Contains(obj));
+        }
+
+        private bool IsCurrentLanguageThisOne(string lang)
+        {
+            return voiceNames[ddlLang.SelectedIndex].Contains(lang);
+        }
+
 		#endregion
 
-		#region global vars.... I mean, just vars, lol, not global
+        #region ------------------------ global vars.... I mean, just vars, lol, not global ------------------------
 
-		public string TextToSay {
+        public string TextToSay {
             get {
                 var text = textArea.Text;
                 if (String.IsNullOrWhiteSpace(text))
@@ -257,9 +285,9 @@ namespace SpeechTest
 
 		#endregion
 
-		#region background worker (saving in file)
+        #region ------------------------ background worker (saving in file) ------------------------
 
-		private void bgwrkSaveToFile_DoWork(object sender, DoWorkEventArgs e) {
+        private void bgwrkSaveToFile_DoWork(object sender, DoWorkEventArgs e) {
 			var texts = TextToSay.SplitIntoPages();
 			var index = 0;
 			foreach (var text in texts) {
@@ -295,5 +323,6 @@ namespace SpeechTest
 		}
 
 		#endregion
+
 	}
 }
