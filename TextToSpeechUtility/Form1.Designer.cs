@@ -42,6 +42,7 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.bgwrkSaveToFile = new System.ComponentModel.BackgroundWorker();
             this.textArea = new System.Windows.Forms.RichTextBox();
+            this.btnNoNewline = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonPlay
@@ -190,12 +191,23 @@
             this.textArea.TextChanged += new System.EventHandler(this.textArea_TextChanged);
             this.textArea.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textArea_KeyDown);
             // 
+            // btnNoNewline
+            // 
+            this.btnNoNewline.Location = new System.Drawing.Point(285, 12);
+            this.btnNoNewline.Name = "btnNoNewline";
+            this.btnNoNewline.Size = new System.Drawing.Size(213, 48);
+            this.btnNoNewline.TabIndex = 15;
+            this.btnNoNewline.Text = "no \\n";
+            this.btnNoNewline.UseVisualStyleBackColor = true;
+            this.btnNoNewline.Click += new System.EventHandler(this.btnNoNewline_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1154, 1333);
+            this.Controls.Add(this.btnNoNewline);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.btnSave);
@@ -236,6 +248,7 @@
         private System.Windows.Forms.LinkLabel linkLabel1;
 		private System.Windows.Forms.ProgressBar progressBar1;
 		private System.ComponentModel.BackgroundWorker bgwrkSaveToFile;
+        private System.Windows.Forms.Button btnNoNewline;
 	}
 }
 

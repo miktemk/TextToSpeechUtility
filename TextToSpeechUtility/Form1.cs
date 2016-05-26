@@ -101,6 +101,11 @@ namespace SpeechTest
             textArea.Text = textArea.Text.WikiStringStrip();
         }
 
+        private void btnNoNewline_Click(object sender, EventArgs e)
+        {
+            textArea.Text = textArea.Text.RemoveAllNewlines();
+        }
+
         private void btnSave_Click(object sender, EventArgs e) {
             var fff = new SaveFileDialog() {
                 //CheckFileExists = true,

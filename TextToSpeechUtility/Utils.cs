@@ -13,14 +13,22 @@ namespace SpeechTest
         /// </summary>
         public static string WikiStringStrip(this string s)
         {
-            Regex rgx = new Regex(@"\[\d+\]", RegexOptions.Multiline);
-            var shit = rgx.Match(s);
-            string result = rgx.Replace(s, "");
-			result = result.Replace("[edit]", "");
+            string result = Regex.Replace(s, @"\[\d+\]", "", RegexOptions.Multiline);
 			result = result.Replace("Contents  [show]", "");
-			result = result.Replace("[citation needed]", "");
-			result = result.Replace("[править | править вики-текст]", "");
-			result = result.Replace("Содержание  [показать]", "");
+            result = result.Replace("Содержание  [показать]", "");
+            //result = result.Replace("[edit]", "");
+            //result = result.Replace("[citation needed]", "");
+            //result = result.Replace("[править | править вики-текст]", "");
+            //result = result.Replace("[en]", "");
+            result = Regex.Replace(s, @"\[.+?\]", "", RegexOptions.Multiline);
+            return result;
+        }
+
+        public static string RemoveAllNewlines(this string s)
+        {
+            string result = s;
+            result = result.Replace("\n", " ");
+            result = result.Replace("\r", " ");
             return result;
         }
 
