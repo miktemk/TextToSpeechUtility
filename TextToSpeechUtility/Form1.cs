@@ -106,6 +106,11 @@ namespace SpeechTest
             textArea.Text = textArea.Text.RemoveAllNewlines();
         }
 
+        private void btnAcronyms_Click(object sender, EventArgs e)
+        {
+            textArea.Text = textArea.Text.FixAcronymsForReadability();
+        }
+
         private void btnSave_Click(object sender, EventArgs e) {
             var fff = new SaveFileDialog() {
                 //CheckFileExists = true,
@@ -119,29 +124,41 @@ namespace SpeechTest
             SayItToFile(fff.FileName);
         }
 
-		// shortcut for stard button
-		private void textArea_KeyDown(object sender, KeyEventArgs e)
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-			if (e.Control && e.KeyCode == Keys.B) {
-				e.Handled = true;
-				e.SuppressKeyPress = true;
-				btnStart_Click(textArea, null);
-			}
+            if (e.Control && e.KeyCode == Keys.B)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+                btnStart_Click(textArea, null);
+            }
             else if (e.Control && e.KeyCode == Keys.W)
             {
                 e.Handled = true;
                 e.SuppressKeyPress = true;
                 btnWikiClean_Click(textArea, null);
             }
-			else if (e.Control && e.KeyCode == Keys.A)
-			{
-				textArea.SelectAll();
-				e.SuppressKeyPress = true;
-				e.Handled = true;
-			}
-			else
-				base.OnKeyDown(e);
-		}
+            else if (e.Control && e.KeyCode == Keys.A)
+            {
+                textArea.SelectAll();
+                e.SuppressKeyPress = true;
+                e.Handled = true;
+            }
+            else if (e.Control && e.KeyCode == Keys.F)
+            {
+                ddlRate.SelectedItem = "7";
+            }
+            else if (e.Control && e.KeyCode == Keys.Oemplus)
+            {
+                if (ddlRate.SelectedIndex < ddlRate.Items.Count-1)
+                    ddlRate.SelectedIndex++;
+            }
+            else if (e.Control && e.KeyCode == Keys.OemMinus)
+            {
+                if (ddlRate.SelectedIndex > 0)
+                    ddlRate.SelectedIndex--;
+            }
+        }
 
         // rate DDL
         private void ddlRate_SelectedIndexChanged_1(object sender, EventArgs e)
@@ -198,7 +215,7 @@ namespace SpeechTest
 		private void Form1_FormClosing(object sender, FormClosingEventArgs e)
 		{
 			appRunning = false;
-			Trace.WriteLine("running set!!!!: " + appRunning);
+			//Trace.WriteLine("running set!!!!: " + appRunning);
 			checker.Join();
 		}
 
@@ -327,7 +344,8 @@ namespace SpeechTest
 			progressBar1.Value = 100;
 		}
 
-		#endregion
 
-	}
+        #endregion
+
+    }
 }

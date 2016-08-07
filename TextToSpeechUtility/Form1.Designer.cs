@@ -43,6 +43,7 @@
             this.bgwrkSaveToFile = new System.ComponentModel.BackgroundWorker();
             this.textArea = new System.Windows.Forms.RichTextBox();
             this.btnNoNewline = new System.Windows.Forms.Button();
+            this.btnAcronyms = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonPlay
@@ -78,7 +79,13 @@
             "1",
             "2",
             "3",
-            "4"});
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"});
             this.ddlRate.Location = new System.Drawing.Point(146, 1130);
             this.ddlRate.Margin = new System.Windows.Forms.Padding(6);
             this.ddlRate.Name = "ddlRate";
@@ -189,7 +196,6 @@
             this.textArea.TabIndex = 1;
             this.textArea.Text = "";
             this.textArea.TextChanged += new System.EventHandler(this.textArea_TextChanged);
-            this.textArea.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textArea_KeyDown);
             // 
             // btnNoNewline
             // 
@@ -201,12 +207,23 @@
             this.btnNoNewline.UseVisualStyleBackColor = true;
             this.btnNoNewline.Click += new System.EventHandler(this.btnNoNewline_Click);
             // 
+            // btnAcronyms
+            // 
+            this.btnAcronyms.Location = new System.Drawing.Point(504, 12);
+            this.btnAcronyms.Name = "btnAcronyms";
+            this.btnAcronyms.Size = new System.Drawing.Size(183, 48);
+            this.btnAcronyms.TabIndex = 16;
+            this.btnAcronyms.Text = "acronyms";
+            this.btnAcronyms.UseVisualStyleBackColor = true;
+            this.btnAcronyms.Click += new System.EventHandler(this.btnAcronyms_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1154, 1333);
+            this.Controls.Add(this.btnAcronyms);
             this.Controls.Add(this.btnNoNewline);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.linkLabel1);
@@ -221,6 +238,7 @@
             this.Controls.Add(this.textArea);
             this.Controls.Add(this.buttonPlay);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "Form1";
             this.Text = "Blah Blah Speaquer";
@@ -228,6 +246,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -249,6 +268,7 @@
 		private System.Windows.Forms.ProgressBar progressBar1;
 		private System.ComponentModel.BackgroundWorker bgwrkSaveToFile;
         private System.Windows.Forms.Button btnNoNewline;
+        private System.Windows.Forms.Button btnAcronyms;
 	}
 }
 

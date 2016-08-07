@@ -16,11 +16,12 @@ namespace SpeechTest
             string result = Regex.Replace(s, @"\[\d+\]", "", RegexOptions.Multiline);
 			result = result.Replace("Contents  [show]", "");
             result = result.Replace("Содержание  [показать]", "");
+            result = result.Replace((char)0xAE, ' ');
             //result = result.Replace("[edit]", "");
             //result = result.Replace("[citation needed]", "");
             //result = result.Replace("[править | править вики-текст]", "");
             //result = result.Replace("[en]", "");
-            result = Regex.Replace(s, @"\[.+?\]", "", RegexOptions.Multiline);
+            result = Regex.Replace(result, @"\[.+?\]", "", RegexOptions.Multiline);
             return result;
         }
 
@@ -29,6 +30,13 @@ namespace SpeechTest
             string result = s;
             result = result.Replace("\n", " ");
             result = result.Replace("\r", " ");
+            return result;
+        }
+
+        public static string FixAcronymsForReadability(this string s)
+        {
+            string result = s;
+            result = result.Replace("GUID", "gooiid");
             return result;
         }
 
