@@ -136,7 +136,7 @@ namespace SpeechTest
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Control && e.KeyCode == Keys.B)
+            if (e.Control && (e.KeyCode == Keys.B || e.KeyCode == Keys.Space))
             {
                 e.Handled = true;
                 e.SuppressKeyPress = true;
