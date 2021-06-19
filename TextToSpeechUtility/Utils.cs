@@ -24,6 +24,16 @@ namespace SpeechTest
             result = Regex.Replace(result, @"\[.+?\]", "", RegexOptions.Multiline);
             return result;
         }
+        
+        public static string SlackStringStrip(this string s)
+        {
+            string result = s;
+            // LINK: https://regex101.com/r/p7u3x6/1
+            result = Regex.Replace(result, @"\d+:\d\d( AM| PM)?$", "", RegexOptions.Multiline);
+            result = Regex.Replace(result, @"\((he|she|they)\/(him|her|them)\)\s*$", "", RegexOptions.Multiline);
+            result = Regex.Replace(result, @"\(edited\)\s*$", "", RegexOptions.Multiline | RegexOptions.IgnoreCase);
+            return result;
+        }
 
         public static string RemoveAllNewlines(this string s)
         {

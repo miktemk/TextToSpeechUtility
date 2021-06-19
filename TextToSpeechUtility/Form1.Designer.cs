@@ -44,14 +44,15 @@
             this.textArea = new System.Windows.Forms.RichTextBox();
             this.btnNoNewline = new System.Windows.Forms.Button();
             this.btnAcronyms = new System.Windows.Forms.Button();
+            this.buttonSlackClean = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonPlay
             // 
-            this.buttonPlay.Location = new System.Drawing.Point(410, 1104);
-            this.buttonPlay.Margin = new System.Windows.Forms.Padding(6);
+            this.buttonPlay.Location = new System.Drawing.Point(154, 463);
+            this.buttonPlay.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.buttonPlay.Name = "buttonPlay";
-            this.buttonPlay.Size = new System.Drawing.Size(408, 95);
+            this.buttonPlay.Size = new System.Drawing.Size(153, 40);
             this.buttonPlay.TabIndex = 0;
             this.buttonPlay.Text = "Play";
             this.buttonPlay.UseVisualStyleBackColor = true;
@@ -60,10 +61,10 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(50, 1135);
-            this.label1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label1.Location = new System.Drawing.Point(19, 476);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(83, 32);
+            this.label1.Size = new System.Drawing.Size(33, 13);
             this.label1.TabIndex = 3;
             this.label1.Text = "Rate:";
             // 
@@ -86,19 +87,19 @@
             "8",
             "9",
             "10"});
-            this.ddlRate.Location = new System.Drawing.Point(146, 1130);
-            this.ddlRate.Margin = new System.Windows.Forms.Padding(6);
+            this.ddlRate.Location = new System.Drawing.Point(55, 474);
+            this.ddlRate.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.ddlRate.Name = "ddlRate";
-            this.ddlRate.Size = new System.Drawing.Size(220, 39);
+            this.ddlRate.Size = new System.Drawing.Size(85, 21);
             this.ddlRate.TabIndex = 4;
             this.ddlRate.SelectedIndexChanged += new System.EventHandler(this.ddlRate_SelectedIndexChanged_1);
             // 
             // buttonStop
             // 
-            this.buttonStop.Location = new System.Drawing.Point(862, 1114);
-            this.buttonStop.Margin = new System.Windows.Forms.Padding(6);
+            this.buttonStop.Location = new System.Drawing.Point(323, 467);
+            this.buttonStop.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.buttonStop.Name = "buttonStop";
-            this.buttonStop.Size = new System.Drawing.Size(242, 85);
+            this.buttonStop.Size = new System.Drawing.Size(91, 36);
             this.buttonStop.TabIndex = 5;
             this.buttonStop.Text = "Stop";
             this.buttonStop.UseVisualStyleBackColor = true;
@@ -106,10 +107,10 @@
             // 
             // buttonWiki
             // 
-            this.buttonWiki.Location = new System.Drawing.Point(34, 6);
-            this.buttonWiki.Margin = new System.Windows.Forms.Padding(6);
+            this.buttonWiki.Location = new System.Drawing.Point(13, 3);
+            this.buttonWiki.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.buttonWiki.Name = "buttonWiki";
-            this.buttonWiki.Size = new System.Drawing.Size(242, 54);
+            this.buttonWiki.Size = new System.Drawing.Size(91, 23);
             this.buttonWiki.TabIndex = 7;
             this.buttonWiki.Text = "Wiki clean";
             this.buttonWiki.UseVisualStyleBackColor = true;
@@ -118,10 +119,10 @@
             // chkIsXml
             // 
             this.chkIsXml.AutoSize = true;
-            this.chkIsXml.Location = new System.Drawing.Point(52, 1244);
-            this.chkIsXml.Margin = new System.Windows.Forms.Padding(6);
+            this.chkIsXml.Location = new System.Drawing.Point(20, 522);
+            this.chkIsXml.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.chkIsXml.Name = "chkIsXml";
-            this.chkIsXml.Size = new System.Drawing.Size(102, 36);
+            this.chkIsXml.Size = new System.Drawing.Size(43, 17);
             this.chkIsXml.TabIndex = 6;
             this.chkIsXml.Text = "Xml";
             this.chkIsXml.UseVisualStyleBackColor = true;
@@ -129,10 +130,10 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(50, 1048);
-            this.label2.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label2.Location = new System.Drawing.Point(19, 439);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(87, 32);
+            this.label2.Size = new System.Drawing.Size(34, 13);
             this.label2.TabIndex = 3;
             this.label2.Text = "Lang:";
             // 
@@ -142,19 +143,19 @@
             this.ddlLang.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ddlLang.FormattingEnabled = true;
             this.ddlLang.IntegralHeight = false;
-            this.ddlLang.Location = new System.Drawing.Point(168, 1029);
-            this.ddlLang.Margin = new System.Windows.Forms.Padding(6);
+            this.ddlLang.Location = new System.Drawing.Point(63, 432);
+            this.ddlLang.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.ddlLang.Name = "ddlLang";
-            this.ddlLang.Size = new System.Drawing.Size(932, 54);
+            this.ddlLang.Size = new System.Drawing.Size(352, 28);
             this.ddlLang.TabIndex = 4;
             this.ddlLang.SelectedIndexChanged += new System.EventHandler(this.ddlLang_SelectedIndexChanged);
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(214, 1223);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(6);
+            this.btnSave.Location = new System.Drawing.Point(80, 513);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(328, 79);
+            this.btnSave.Size = new System.Drawing.Size(123, 33);
             this.btnSave.TabIndex = 8;
             this.btnSave.Text = "Save to file";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -163,10 +164,10 @@
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(706, 1252);
-            this.linkLabel1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.linkLabel1.Location = new System.Drawing.Point(265, 525);
+            this.linkLabel1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(393, 32);
+            this.linkLabel1.Size = new System.Drawing.Size(150, 13);
             this.linkLabel1.TabIndex = 13;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "Where did I save that last file?";
@@ -174,10 +175,10 @@
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(4, 1314);
-            this.progressBar1.Margin = new System.Windows.Forms.Padding(6);
+            this.progressBar1.Location = new System.Drawing.Point(2, 551);
+            this.progressBar1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(1154, 19);
+            this.progressBar1.Size = new System.Drawing.Size(433, 8);
             this.progressBar1.TabIndex = 14;
             // 
             // bgwrkSaveToFile
@@ -189,19 +190,20 @@
             // 
             // textArea
             // 
-            this.textArea.Location = new System.Drawing.Point(34, 72);
-            this.textArea.Margin = new System.Windows.Forms.Padding(6);
+            this.textArea.Location = new System.Drawing.Point(13, 30);
+            this.textArea.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.textArea.Name = "textArea";
-            this.textArea.Size = new System.Drawing.Size(1066, 934);
+            this.textArea.Size = new System.Drawing.Size(402, 394);
             this.textArea.TabIndex = 1;
             this.textArea.Text = "";
             this.textArea.TextChanged += new System.EventHandler(this.textArea_TextChanged);
             // 
             // btnNoNewline
             // 
-            this.btnNoNewline.Location = new System.Drawing.Point(285, 12);
+            this.btnNoNewline.Location = new System.Drawing.Point(209, 4);
+            this.btnNoNewline.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.btnNoNewline.Name = "btnNoNewline";
-            this.btnNoNewline.Size = new System.Drawing.Size(213, 48);
+            this.btnNoNewline.Size = new System.Drawing.Size(80, 20);
             this.btnNoNewline.TabIndex = 15;
             this.btnNoNewline.Text = "no \\n";
             this.btnNoNewline.UseVisualStyleBackColor = true;
@@ -209,25 +211,38 @@
             // 
             // btnAcronyms
             // 
-            this.btnAcronyms.Location = new System.Drawing.Point(504, 12);
+            this.btnAcronyms.Location = new System.Drawing.Point(291, 4);
+            this.btnAcronyms.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.btnAcronyms.Name = "btnAcronyms";
-            this.btnAcronyms.Size = new System.Drawing.Size(183, 48);
+            this.btnAcronyms.Size = new System.Drawing.Size(69, 20);
             this.btnAcronyms.TabIndex = 16;
             this.btnAcronyms.Text = "acronyms";
             this.btnAcronyms.UseVisualStyleBackColor = true;
             this.btnAcronyms.Click += new System.EventHandler(this.btnAcronyms_Click);
             // 
+            // buttonSlackClean
+            // 
+            this.buttonSlackClean.Location = new System.Drawing.Point(108, 3);
+            this.buttonSlackClean.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.buttonSlackClean.Name = "buttonSlackClean";
+            this.buttonSlackClean.Size = new System.Drawing.Size(91, 23);
+            this.buttonSlackClean.TabIndex = 7;
+            this.buttonSlackClean.Text = "Slack clean";
+            this.buttonSlackClean.UseVisualStyleBackColor = true;
+            this.buttonSlackClean.Click += new System.EventHandler(this.buttonSlackClean_Click);
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1154, 1333);
+            this.ClientSize = new System.Drawing.Size(433, 559);
             this.Controls.Add(this.btnAcronyms);
             this.Controls.Add(this.btnNoNewline);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.btnSave);
+            this.Controls.Add(this.buttonSlackClean);
             this.Controls.Add(this.buttonWiki);
             this.Controls.Add(this.chkIsXml);
             this.Controls.Add(this.buttonStop);
@@ -239,7 +254,7 @@
             this.Controls.Add(this.buttonPlay);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
-            this.Margin = new System.Windows.Forms.Padding(6);
+            this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Name = "Form1";
             this.Text = "Blah Blah Speaquer";
             this.Activated += new System.EventHandler(this.Form1_Activated);
@@ -269,6 +284,7 @@
 		private System.ComponentModel.BackgroundWorker bgwrkSaveToFile;
         private System.Windows.Forms.Button btnNoNewline;
         private System.Windows.Forms.Button btnAcronyms;
-	}
+        private System.Windows.Forms.Button buttonSlackClean;
+    }
 }
 

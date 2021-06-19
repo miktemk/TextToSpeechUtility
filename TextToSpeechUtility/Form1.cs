@@ -111,7 +111,12 @@ namespace SpeechTest
             textArea.Text = textArea.Text.WikiStringStrip();
         }
 
-        private void btnNoNewline_Click(object sender, EventArgs e)
+		private void buttonSlackClean_Click(object sender, EventArgs e)
+		{
+			textArea.Text = textArea.Text.SlackStringStrip();
+		}
+
+		private void btnNoNewline_Click(object sender, EventArgs e)
         {
             textArea.Text = textArea.Text.RemoveAllNewlines();
         }
@@ -369,7 +374,7 @@ namespace SpeechTest
 		}
 
 
-        #endregion
+		#endregion
 
-    }
+	}
 }
