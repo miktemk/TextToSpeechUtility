@@ -9,7 +9,6 @@ using System.Threading;
 using System.Windows.Forms;
 using SpeechLib;
 using SpeechTest.Properties;
-using System.Speech.Synthesis;
 using System.Diagnostics;
 using System.IO;
 
@@ -41,13 +40,23 @@ namespace SpeechTest
                 ddlLang.Items.Add(name);
                 voiceNames[i] = name;
             }
-            if (voices.Count > 0)
-                ddlLang.SelectedIndex = 0;
         }
 
-        #region ------------------------ event handlers ------------------------
+		private void SelectPreferredDefaultVoice()
+		{
+			if (voiceNames.Length > 0)
+			{
+				var indexOfEva = IndexOfLanguageByName("Microsoft Eva Mobile");
+				if (indexOfEva != -1)
+					ddlLang.SelectedIndex = indexOfEva;
+				else
+					ddlLang.SelectedIndex = 0;
+			}
+		}
 
-        private void Form1_Load(object sender, EventArgs e) {
+		#region ------------------------ event handlers ------------------------
+
+		private void Form1_Load(object sender, EventArgs e) {
 			LastFolder = Path.GetDirectoryName(Application.ExecutablePath);
 
 			ddlRate.SelectedItem = "2";
@@ -56,14 +65,15 @@ namespace SpeechTest
 			appRunning = true;
 			textArea.GotFocus += textArea_GotFocus;
 
-			SpeechSynthesizer synth = new SpeechSynthesizer();
-			var voices = synth.GetInstalledVoices();
-			var shit = voices.Select(x => x.VoiceInfo.Description).ToArray();
+			//SpeechSynthesizer synth = new SpeechSynthesizer();
+			//var voices = synth.GetInstalledVoices();
+			//var shit = voices.Select(x => x.VoiceInfo.Description).ToArray();
 			//synth.SpeakAsync(new Prompt("hello you bitches I am the best"));
 
 			// make textbox non editable
 			// see: http://stackoverflow.com/questions/85702/how-can-i-make-a-combobox-non-editable-in-net
 			ddlLang.DropDownStyle = ComboBoxStyle.DropDownList;
+			SelectPreferredDefaultVoice();
 		}
 		
         // start button
@@ -180,8 +190,9 @@ namespace SpeechTest
                     IsCurrentLanguageThisOne("Microsoft Hazel Desktop") ||
                     IsCurrentLanguageThisOne("Microsoft Zira Desktop"))
                     ddlRate.SelectedItem = "2";
-                if (IsCurrentLanguageThisOne("Microsoft Irina Desktop"))
-                    ddlRate.SelectedItem = "3";
+                if (IsCurrentLanguageThisOne("Microsoft Eva Mobile") ||
+					IsCurrentLanguageThisOne("Microsoft Irina Desktop"))
+                    ddlRate.SelectedItem = "7";
             }
         }
 
@@ -290,11 +301,24 @@ namespace SpeechTest
             return voiceNames[ddlLang.SelectedIndex].Contains(lang);
         }
 
+		private int IndexOfLanguageByName(string lang)
+		{
+			// NOTE: copied from Miktemk, since we dont have linq/dlls here
+			var index = 0;
+			foreach (var x in voiceNames)
+			{
+				if (x.Contains(lang))
+					return index;
+				index++;
+			}
+			return -1;
+		}
+
 		#endregion
 
-        #region ------------------------ global vars.... I mean, just vars, lol, not global ------------------------
+		#region ------------------------ global vars.... I mean, just vars, lol, not global ------------------------
 
-        public string TextToSay {
+		public string TextToSay {
             get {
                 var text = textArea.Text;
                 if (String.IsNullOrWhiteSpace(text))
